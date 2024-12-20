@@ -1,7 +1,7 @@
 ### Dependency Diagram
 
 ![Diagram](files/clean.drawio.png)
-<img src="images/example.png" width="300" />
+<img src="files/darkmode.png" width="500" />
 ![Home-dark mode](files/darkmode.png)
 ![Home-light mode](files/lightmode.png)
 ![Home-alert-light mode](files/light alert.png)

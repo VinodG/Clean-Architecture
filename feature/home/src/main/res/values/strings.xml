@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hint_enter_a_word">Enter a Word</string>
+    <string name="button_search">Search</string>
+    <string name="title_home">Dictionary</string>
+    <string name="label_word">Word :</string>
+    <string name="icon_close">Clear</string>
+    <string name="error_something_went_wrong">Something went wrong</string>
+    <string name="button_close">Close</string>
+</resources>

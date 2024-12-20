@@ -57,8 +57,6 @@ dependencies {
     implementation(project(":feature:home"))
     implementation(project(":core:data"))
     testImplementation(libs.junit)
-    testImplementation(project(":core:network"))
-    testImplementation(project(":core:network"))
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))

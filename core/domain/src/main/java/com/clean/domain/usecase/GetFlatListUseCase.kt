@@ -10,13 +10,13 @@ class GetFlatListUseCase @Inject constructor(private val getWordUseCase: GetWord
         return getWordUseCase(word).map { words ->
             val list = mutableListOf<Line>()
             words.forEach { word ->
-                addOnNonEmpty(word.word, Line.Type.Word, list)
-                addOnNonEmpty(word.phonetic, Line.Type.Phonetic, list)
+                addOnNonEmptyString(word.word, Line.Type.Word, list)
+                addOnNonEmptyString(word.phonetic, Line.Type.Phonetic, list)
                 word.meanings.forEach { meaning ->
-                    addOnNonEmpty(meaning.partOfSpeech, Line.Type.PartsOfSpeech, list)
+                    addOnNonEmptyString(meaning.partOfSpeech, Line.Type.PartsOfSpeech, list)
                     meaning.definitions.forEach { definition ->
-                        addOnNonEmpty(definition.definition, Line.Type.Definition, list)
-                        addOnNonEmpty(definition.example, Line.Type.Example, list)
+                        addOnNonEmptyString(definition.definition, Line.Type.Definition, list)
+                        addOnNonEmptyString(definition.example, Line.Type.Example, list)
                     }
                 }
             }
@@ -24,7 +24,7 @@ class GetFlatListUseCase @Inject constructor(private val getWordUseCase: GetWord
         }
     }
 
-    private fun addOnNonEmpty(str: String, type: Line.Type, list: MutableList<Line>) {
+    private fun addOnNonEmptyString(str: String, type: Line.Type, list: MutableList<Line>) {
         if (str.isNotEmpty()) {
             list.add(Line(str, type))
         }

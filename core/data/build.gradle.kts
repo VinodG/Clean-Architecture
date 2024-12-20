@@ -38,7 +38,6 @@ dependencies {
 
 implementation(project(":core:domain"))
     implementation(project(":core:network"))
-//    implementation(libs.kotlinx.serialization)
     implementation(libs.hilt.android)
     kapt(libs.dagger.hilt.android.compiler)
 

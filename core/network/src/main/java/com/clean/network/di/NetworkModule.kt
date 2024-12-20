@@ -1,6 +1,5 @@
 package com.clean.network.di
 
-import androidx.core.os.BuildCompat
 import com.clean.network.BuildConfig
 import com.clean.network.CaApi
 import com.clean.network.datasource.DictionaryDataSource

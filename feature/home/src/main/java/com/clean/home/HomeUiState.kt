@@ -2,13 +2,11 @@ package com.clean.home
 
 import androidx.compose.runtime.Stable
 import com.clean.domain.model.Line
-import com.clean.domain.model.Word
 
 object Home {
     @Stable
     data class UiState(
-        val word: String = "word",
-//        val words: List<Word> = listOf(),
+        val word: String = "",
         val lines: List<Line> = listOf(),
         val overlayState: OverlayState = OverlayState.None
     )

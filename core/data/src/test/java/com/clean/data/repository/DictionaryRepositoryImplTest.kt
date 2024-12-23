@@ -13,7 +13,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito.mock
-import org.mockito.kotlin.whenever
+import org.mockito.Mockito.`when`
 
 class DictionaryRepositoryImplTest {
     private lateinit var repository: DictionaryRepositoryImpl
@@ -34,8 +34,8 @@ class DictionaryRepositoryImplTest {
         val wordDto = mock<WordDto>()
         val wordModel = mock<Word>()
         val wordDtoList = listOf(wordDto)
-        whenever(dataSource.getMeanings(word)).thenReturn(wordDtoList)
-        whenever(wordDtoMapper.map(wordDto)).thenReturn(wordModel)
+        `when`(dataSource.getMeanings(word)).thenReturn(wordDtoList)
+        `when`(wordDtoMapper.map(wordDto)).thenReturn(wordModel)
         val result = repository.getMeaning(word)
         result.onEach {
             assertThat(it).hasSize(1)
@@ -45,7 +45,7 @@ class DictionaryRepositoryImplTest {
 
     @Test
     fun `given getMeanings(word) of datasource returns empty list, when getMeaning(word) is called, then it returns flow of empty list`() = runTest {
-         whenever(dataSource.getMeanings(word)).thenReturn(emptyList())
+         `when`(dataSource.getMeanings(word)).thenReturn(emptyList())
         val result = repository.getMeaning(word)
         result.onEach {
             assertThat(it).isEmpty()
@@ -55,7 +55,7 @@ class DictionaryRepositoryImplTest {
     @Test
     fun `given getMeanings(word) of datasource throws exception, when getMeaning(word) is called, then it throws exception`() = runTest {
         val exception = Exception("")
-        whenever(dataSource.getMeanings(word)).then { exception }
+        `when`(dataSource.getMeanings(word)).then { exception }
         repository.getMeaning(word).catch {
             assertThat(it).isInstanceOf(Exception::class.java)
         }.onEach {

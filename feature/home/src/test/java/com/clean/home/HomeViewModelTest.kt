@@ -11,8 +11,8 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.kotlin.mock
-import org.mockito.kotlin.whenever
+import org.mockito.Mockito
+import org.mockito.Mockito.mock
 
 
 @ExperimentalCoroutinesApi
@@ -30,7 +30,7 @@ class HomeViewModelTest {
 
     @Before
     fun setup() = runTest {
-        whenever(getFlatListUseCase.invoke(newWord)).thenReturn(flowOf(expectedWords))
+        Mockito.`when`(getFlatListUseCase.invoke(newWord)).thenReturn(flowOf(expectedWords))
         viewModel = HomeViewModel(getFlatListUseCase)
     }
 
@@ -53,7 +53,7 @@ class HomeViewModelTest {
     @Test
     fun `given getFlatListUseCase(newWord) returns words with delay, when onEvent(OnSearchClick) is called, then returns overlayState as Loading`() =
         runTest {
-            whenever(getFlatListUseCase.invoke(newWord)).thenReturn(
+            Mockito.`when`(getFlatListUseCase.invoke(newWord)).thenReturn(
                 flow {
                     delay(2000L)
                     emit(expectedWords)
@@ -67,7 +67,7 @@ class HomeViewModelTest {
     @Test
     fun `given getFlatListUseCase(newWord) throws exception, when onEvent(OnSearchClick) is called, then returns overlayState as Error`() =
         runTest {
-            whenever(getFlatListUseCase(newWord)).thenReturn(flow<List<Line>> {
+            Mockito.`when`(getFlatListUseCase(newWord)).thenReturn(flow<List<Line>> {
                 throw Exception("API Error")
             })
             viewModel.onEvent(Home.Event.OnSearchClick(newWord))

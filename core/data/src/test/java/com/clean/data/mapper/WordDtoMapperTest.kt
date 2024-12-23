@@ -6,8 +6,8 @@ import com.clean.network.model.WordDto
 import com.google.common.truth.Truth.assertThat
 import org.junit.Before
 import org.junit.Test
-import org.mockito.kotlin.mock
-import org.mockito.kotlin.whenever
+import org.mockito.Mockito
+import org.mockito.Mockito.mock
 
 
 class WordDtoMapperTest {
@@ -51,7 +51,7 @@ class WordDtoMapperTest {
         val partOfSpeech = "partsOfSpeech"
         val meaningDto = MeaningDto(partOfSpeech = partOfSpeech,null)
         val meaning = Meaning(partOfSpeech = partOfSpeech, listOf())
-        whenever(meaningDtoMapper.map(meaningDto)).thenReturn(meaning)
+        Mockito.`when`(meaningDtoMapper.map(meaningDto)).thenReturn(meaning)
         val wordDto = WordDto(meanings = listOf(meaningDto))
         val actualWord = wordDtoMapper.map(wordDto)
         actualWord.apply {

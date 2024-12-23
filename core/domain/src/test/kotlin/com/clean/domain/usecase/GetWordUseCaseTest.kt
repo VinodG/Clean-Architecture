@@ -9,7 +9,8 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import org.mockito.Mockito.mock
-import org.mockito.kotlin.whenever
+import org.mockito.Mockito.`when`
+
 
 
 class GetWordUseCaseTest {
@@ -20,14 +21,14 @@ class GetWordUseCaseTest {
 
     @Test
     fun `given getMeaning() returns list of words, when getWordUseCase() called, then it returns list of words`() = runTest {
-        whenever(repository.getMeaning(newWord)).thenReturn(flowOf(expectedResponse))
+        `when`(repository.getMeaning(newWord)).thenReturn(flowOf(expectedResponse))
         getWordUseCase(newWord).onEach {
             assertThat(it).isEqualTo(expectedResponse)
         }.collect()
     }
     @Test
     fun `given getMeaning() returns empty, when getWordUseCase() called, then it returns empty of words`() = runTest {
-        whenever(repository.getMeaning(newWord)).thenReturn(flowOf(listOf()))
+        `when`(repository.getMeaning(newWord)).thenReturn(flowOf(listOf()))
         getWordUseCase(newWord).onEach {
             assertThat(it).isEmpty()
         }.collect()

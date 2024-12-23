@@ -7,19 +7,20 @@ import com.google.common.truth.Truth.assertThat
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito.mock
-import org.mockito.kotlin.whenever
+import org.mockito.Mockito.`when`
+
 
 
 class MeaningDtoMapperTest {
 
-    private lateinit var definitionDtoMapper: DefinitionDtoMapper
+    private var definitionDtoMapper: DefinitionDtoMapper = mock()
     private lateinit var mapper: MeaningDtoMapper
     private val expectedPartsOfSpeech = "partsOfSpeech"
 
 
     @Before
     fun setUp() {
-        definitionDtoMapper = mock()
+        definitionDtoMapper
         mapper = MeaningDtoMapper(definitionDtoMapper)
     }
 
@@ -39,7 +40,7 @@ class MeaningDtoMapperTest {
             DefinitionDto(definition = expectedDefinition, example = expectedExample)
         val expectedDefinitionObject =
             Definition(definition = expectedDefinition, example = expectedExample)
-        whenever(definitionDtoMapper.map(actualDefinitionDto)).thenReturn(expectedDefinitionObject)
+        `when`(definitionDtoMapper.map(actualDefinitionDto)).thenReturn(expectedDefinitionObject)
         val meaningDto = MeaningDto(
             expectedPartsOfSpeech,
             listOf(actualDefinitionDto)

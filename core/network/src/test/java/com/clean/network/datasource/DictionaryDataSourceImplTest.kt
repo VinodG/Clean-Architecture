@@ -6,8 +6,8 @@ import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
+import org.mockito.Mockito
 import org.mockito.Mockito.mock
-import org.mockito.kotlin.whenever
 
 
 class DictionaryDataSourceImplTest {
@@ -24,7 +24,7 @@ class DictionaryDataSourceImplTest {
     @Test
     fun `given getMeanings() of api returns empty list,when getMeanings() is called, then it returns empty list`() =
         runTest {
-            whenever(api.getMeanings(word)).thenReturn(listOf())
+            Mockito.`when`(api.getMeanings(word)).thenReturn(listOf())
             assertThat(dataSource.getMeanings(word)).isEmpty()
         }
 
@@ -32,7 +32,7 @@ class DictionaryDataSourceImplTest {
     fun `given getMeanings() of api returns non-empty list, when getMeanings() is called, then it returns non-empty list`() =
         runTest {
             val list = listOf(WordDto())
-            whenever(api.getMeanings(word)).thenReturn(list)
+            Mockito.`when`(api.getMeanings(word)).thenReturn(list)
             assertThat(dataSource.getMeanings(word)).isEqualTo(list)
         }
 }

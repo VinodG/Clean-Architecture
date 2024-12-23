@@ -10,8 +10,8 @@ import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
-import org.mockito.kotlin.mock
-import org.mockito.kotlin.whenever
+import org.mockito.Mockito
+import org.mockito.Mockito.mock
 
 
 class GetFlatListUseCaseTest {
@@ -33,7 +33,7 @@ class GetFlatListUseCaseTest {
     @Test
     fun `given getWordUseCase() returns list of Word, when getFlatListUseCase() is called, then it returns list of Line objects`() =
         runTest {
-            whenever(getWordUseCase(word)).thenReturn(flowOf(listOf(getWord())))
+            Mockito.`when`(getWordUseCase(word)).thenReturn(flowOf(listOf(getWord())))
             getFlatListUseCase(word).collectLatest {
                 assertThat(it).isEqualTo(getExpected())
             }
@@ -42,7 +42,7 @@ class GetFlatListUseCaseTest {
     @Test
     fun `given getWordUseCase() returns list of Word with out word, when getFlatListUseCase() is called, then it returns list of Line objects with out Word type`() =
         runTest {
-            whenever(getWordUseCase(word)).thenReturn(flowOf(listOf(getWord(isWordSkipped = true))))
+            Mockito.`when`(getWordUseCase(word)).thenReturn(flowOf(listOf(getWord(isWordSkipped = true))))
             getFlatListUseCase(word).collectLatest {
                 assertThat(it).isEqualTo(getExpected(isWordSkipped = true))
             }
@@ -51,7 +51,7 @@ class GetFlatListUseCaseTest {
     @Test
     fun `given getWordUseCase() returns list of Word with out phonetic, when getFlatListUseCase() is called, then it returns list of Line objects with out Phonetic type`() =
         runTest {
-            whenever(getWordUseCase(word)).thenReturn(flowOf(listOf(getWord(isPhoneticSkipped = true))))
+            Mockito.`when`(getWordUseCase(word)).thenReturn(flowOf(listOf(getWord(isPhoneticSkipped = true))))
             getFlatListUseCase(word).collectLatest {
                 assertThat(it).isEqualTo(getExpected(isPhoneticSkipped = true))
             }
@@ -60,7 +60,7 @@ class GetFlatListUseCaseTest {
     @Test
     fun `given getWordUseCase() returns list of Word with out definition, when getFlatListUseCase() is called, then it returns list of Line objects with out Definition type`() =
         runTest {
-            whenever(getWordUseCase(word)).thenReturn(flowOf(listOf(getWord(isDefinitionSkipped = true))))
+            Mockito.`when`(getWordUseCase(word)).thenReturn(flowOf(listOf(getWord(isDefinitionSkipped = true))))
             getFlatListUseCase(word).collectLatest {
                 assertThat(it).isEqualTo(getExpected(isDefinitionSkipped = true))
             }
@@ -69,7 +69,7 @@ class GetFlatListUseCaseTest {
     @Test
     fun `given getWordUseCase() returns list of Word with out partsOfSpeech, when getFlatListUseCase() is called, then it returns list of Line objects with out PartsOfSpeech type`() =
         runTest {
-            whenever(getWordUseCase(word)).thenReturn(flowOf(listOf(getWord(isDefinitionSkipped = true))))
+            Mockito.`when`(getWordUseCase(word)).thenReturn(flowOf(listOf(getWord(isDefinitionSkipped = true))))
             getFlatListUseCase(word).collectLatest {
                 assertThat(it).isEqualTo(getExpected(isDefinitionSkipped = true))
             }
@@ -78,7 +78,7 @@ class GetFlatListUseCaseTest {
     @Test
     fun `given getWordUseCase() returns list of Word with out example, when getFlatListUseCase() is called, then it returns list of Line objects with out Example type`() =
         runTest {
-            whenever(getWordUseCase(word)).thenReturn(flowOf(listOf(getWord(isExampleSkipped = true))))
+            Mockito.`when`(getWordUseCase(word)).thenReturn(flowOf(listOf(getWord(isExampleSkipped = true))))
             getFlatListUseCase(word).collectLatest {
                 assertThat(it).isEqualTo(getExpected(isExampleSkipped = true))
             }
